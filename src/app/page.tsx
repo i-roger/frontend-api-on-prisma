@@ -3,11 +3,18 @@ import Image from "next/image";
 
 
 export default function Home() {
-
+  
   async function getData() {
-    await fetch('https://api-on-prisma.vercel.app/')
-        .then(response => console.log(response.json()))
-        .catch(error => console.error(error));
+    await fetch('https://api-on-prisma.vercel.app/',
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${process.env.VercelKey}`
+      }
+    }
+    )
+      .then(response => console.log(response.json()))
+      .catch(error => console.error(error));
   }
 
   return (
