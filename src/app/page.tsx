@@ -1,15 +1,24 @@
 'use client';
 import Image from "next/image";
+import axios from 'axios';
 
+const apiUrl = 'https://api-on-prisma.vercel.app/'
+
+const api = axios.create({
+  baseURL: apiUrl
+})
 
 export default function Home() {
   // Config passando token
   async function getData() {
-    await fetch('https://api-on-prisma.vercel.app/'
-    )
-      .then(response => console.log(response.json()))
-      .then(json =>console.log(json))
-      .catch(error => console.error(error));
+    // VIA AXIOS
+    await api.get("/").then((response)=>console.log(response.data))
+
+    // await fetch('https://api-on-prisma.vercel.app/'
+    // )
+    //   .then(response => console.log(response.json()))
+    //   .then(json =>console.log(json))
+    //   .catch(error => console.error(error));
   }
 
   return (
