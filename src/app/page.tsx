@@ -1,18 +1,22 @@
 'use client';
 import Image from "next/image";
-import axios from 'axios';
-
-const apiUrl = 'https://api-on-prisma.vercel.app/'
-
-const api = axios.create({
-  baseURL: apiUrl
-})
 
 export default function Home() {
-  // Config passando token
+
   async function getData() {
-    // VIA AXIOS
-    await api.get("/").then((response)=>console.log(response.data))
+    let headersList = {
+      "Accept": "*/*",
+      "User-Agent": "FrontEnd API (https://frontend-api-on-prisma.vercel.app/)"
+     }
+     
+     let response = await fetch("https://api-on-prisma.vercel.app/", { 
+       method: "GET",
+       headers: headersList
+     });
+     
+     let data = await response.text();
+     console.log(data);
+     
 
     // await fetch('https://api-on-prisma.vercel.app/'
     // )
